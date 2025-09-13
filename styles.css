@@ -1,0 +1,540 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: #000000;
+    color: white;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Rainfall Animation */
+.rain-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.rain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><line x1="50" y1="0" x2="50" y2="15" stroke="%2347a3ff" stroke-width="1" opacity="0.8"/></svg>') repeat;
+    animation: rain 0.8s linear infinite;
+}
+
+.rain::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><line x1="30" y1="0" x2="30" y2="12" stroke="%2347a3ff" stroke-width="0.8" opacity="0.6"/></svg>') repeat;
+    animation: rain 1.2s linear infinite;
+}
+
+.rain::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><line x1="70" y1="0" x2="70" y2="10" stroke="%2347a3ff" stroke-width="0.6" opacity="0.4"/></svg>') repeat;
+    animation: rain 1.5s linear infinite;
+}
+
+@keyframes rain {
+    0% {
+        transform: translateY(-100vh);
+    }
+    100% {
+        transform: translateY(100vh);
+    }
+}
+
+/* Content */
+.content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+    margin-bottom: 40px;
+}
+
+.app-icon {
+    margin-bottom: 30px;
+}
+
+.icon-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 25px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.icon-image:hover {
+    transform: scale(1.05);
+}
+
+.app-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, #ffffff, #a8d8ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.app-subtitle {
+    font-size: 1.3rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Screenshots Section */
+.screenshots {
+    margin-bottom: 60px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.screenshots.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.screenshots h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.screenshot-container {
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.screenshot-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.screenshot-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.screenshot-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 30px;
+    padding: 10px 0;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: #47a3ff #000;
+    position: relative;
+}
+
+.screenshot-scroll::-webkit-scrollbar {
+    height: 8px;
+}
+
+.screenshot-scroll::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+}
+
+.screenshot-scroll::-webkit-scrollbar-thumb {
+    background: #47a3ff;
+    border-radius: 4px;
+}
+
+.screenshot-item {
+    flex: 0 0 300px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.screenshot-item:hover {
+    transform: scale(1.05);
+}
+
+.screenshot {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Support Section */
+.support {
+    padding: 40px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.support.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.support h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.support-content p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.contact-info {
+    margin: 30px 0;
+}
+
+.email-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(45deg, #2196F3, #1976D2);
+    color: white;
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+    transition: all 0.3s ease;
+}
+
+.email-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
+    background: linear-gradient(45deg, #1976D2, #2196F3);
+}
+
+.email-icon {
+    font-size: 1.3rem;
+}
+
+.support-note {
+    font-size: 1rem;
+    opacity: 0.7;
+    margin-top: 20px;
+}
+
+.privacy-link {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.privacy-link-text {
+    color: #47a3ff;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    opacity: 0.9;
+}
+
+.privacy-link-text:hover {
+    color: #ffffff;
+    opacity: 1;
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+
+/* Large screens (1200px and up) */
+@media (min-width: 1200px) {
+    .content {
+        max-width: 1400px;
+    }
+    
+    .screenshot-item {
+        flex: 0 0 350px;
+    }
+}
+
+/* Tablets and small laptops (768px to 1199px) */
+@media (max-width: 1199px) and (min-width: 769px) {
+    .content {
+        max-width: 1000px;
+        padding: 20px;
+    }
+    
+    .app-title {
+        font-size: 3rem;
+    }
+    
+    .screenshot-item {
+        flex: 0 0 280px;
+    }
+    
+    .screenshot-container {
+        padding: 25px;
+    }
+}
+
+/* Tablets (768px and down) */
+@media (max-width: 768px) {
+    .app-title {
+        font-size: 2.5rem;
+    }
+    
+    .app-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .hero {
+        padding: 40px 20px;
+    }
+    
+    .support {
+        padding: 30px 20px;
+    }
+    
+    .content {
+        padding: 15px;
+    }
+    
+    .screenshot-item {
+        flex: 0 0 250px;
+    }
+    
+    .screenshot-container {
+        padding: 20px;
+        margin: 0 10px;
+    }
+    
+    .screenshot-scroll {
+        gap: 20px;
+    }
+    
+    .screenshots h2 {
+        font-size: 2.2rem;
+        margin-bottom: 30px;
+    }
+}
+
+/* Mobile landscape (568px to 767px) */
+@media (max-width: 767px) and (min-width: 568px) {
+    .app-title {
+        font-size: 2.2rem;
+    }
+    
+    .app-subtitle {
+        font-size: 1rem;
+    }
+    
+    .screenshot-item {
+        flex: 0 0 220px;
+    }
+    
+    .screenshot-container {
+        padding: 15px;
+    }
+    
+    .screenshot-scroll {
+        gap: 15px;
+    }
+}
+
+/* Mobile portrait (480px to 567px) */
+@media (max-width: 567px) and (min-width: 481px) {
+    .app-title {
+        font-size: 2rem;
+    }
+    
+    .app-subtitle {
+        font-size: 0.95rem;
+    }
+    
+    .icon-image {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .screenshot-item {
+        flex: 0 0 200px;
+    }
+    
+    .screenshot-container {
+        padding: 15px;
+        margin: 0 5px;
+    }
+    
+    .screenshot-scroll {
+        gap: 15px;
+    }
+    
+    .screenshots h2,
+    .support h2 {
+        font-size: 1.8rem;
+    }
+    
+    .email-link {
+        padding: 12px 25px;
+        font-size: 1.1rem;
+    }
+}
+
+/* Small mobile (480px and down) */
+@media (max-width: 480px) {
+    .app-title {
+        font-size: 1.8rem;
+    }
+    
+    .app-subtitle {
+        font-size: 0.9rem;
+        padding: 0 10px;
+    }
+    
+    .icon-image {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .hero {
+        padding: 30px 15px;
+    }
+    
+    .screenshot-item {
+        flex: 0 0 180px;
+    }
+    
+    .screenshot-container {
+        padding: 12px;
+        margin: 0;
+        border-radius: 15px;
+    }
+    
+    .screenshot-scroll {
+        gap: 12px;
+        padding: 5px 0;
+    }
+    
+    .screenshots h2,
+    .support h2 {
+        font-size: 1.6rem;
+        margin-bottom: 25px;
+    }
+    
+    .support {
+        padding: 25px 15px;
+    }
+    
+    .email-link {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+    
+    .content {
+        padding: 10px;
+    }
+}
+
+/* Extra small screens (320px and down) */
+@media (max-width: 320px) {
+    .app-title {
+        font-size: 1.6rem;
+    }
+    
+    .app-subtitle {
+        font-size: 0.85rem;
+    }
+    
+    .icon-image {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .screenshot-item {
+        flex: 0 0 160px;
+    }
+    
+    .screenshots h2,
+    .support h2 {
+        font-size: 1.4rem;
+    }
+    
+    .email-link {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .screenshot-item:hover {
+        transform: none;
+    }
+    
+    .email-link:hover {
+        transform: none;
+    }
+    
+    .screenshot-scroll {
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .screenshot {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
